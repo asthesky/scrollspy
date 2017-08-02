@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding-top: 200px;
+            padding-bottom: 10px;
+        }
+
+        .J_ScrollNav_bg {
+            height: 50px;
+        }
+
+        .J_Content {
+            height: 400px;
+        }
+
+        .J_ScrollNav {
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            top: 0;
+            left: 0;
+        }
+
+        .J_ScrollNav a {
+            float: left;
+            width: 100px;
+            line-height: 50px;
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .J_ScrollNav a.on {
+
+            background: red;
+        }
+
+        #one {
+            background: #0f0;
+        }
+
+        #two {
+            background: #00f;
+        }
+
+        #three {
+            background: #f00;
+        }
+
+        #four {
+            background: #0f0;
+        }
+
+        #five {
+            background: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="J_ScrollNav_bg">
+        <div class="J_ScrollNav"></div>
+    </div>
+
+    <div class="J_Content" id="one" data-txt="1">one</div>
+    <div class="J_Content" id="two" data-txt="2" data-shift="-100">two</div>
+    <div class="J_Content" id="three" data-txt="3">three</div>
+    <div class="J_Content" id="four" data-txt="4">four</div>
+    <div class="J_Content" id="five" data-txt="5">five</div>
+</body>
+<script src="http://apps.bdimg.com/libs/seajs/2.2.1/sea-debug.js" type="text/javascript"></script>
+<!-- <script src="../dist/scrollspy.min.js" type="text/javascript"></script> -->
+<script src="../src/index.js" type="text/javascript"></script>
+
+<script>
+    window.console || (window.console = { log: function () { } });
+
+    seajs.use("scrollspy", function () {
+        demoInit();
+    })
+
+    function demoInit() {
+        var obj = $.scrollspy({
+            navEl: ".J_ScrollNav",
+            contentEl: ".J_Content",
+            currentCls: "on",
+            navTopH: 50,
+            //触发滚动执行
+            scrollFn: {
+                "one": function () {
+                    console.log("scroll one");
+                }
+            },
+            //进入区域执行
+            enterFn: {
+                "one": function () {
+                    console.log(" enter one");
+                },
+                "two": function () {
+                    console.log(" enter two");
+                },
+                "three": function () {
+                    console.log(" enter three");
+                },
+                "four": function () {
+                    console.log(" enter four");
+                },
+                "five": function () {
+                    console.log(" enter five");
+                }
+            },
+            //第一次到达执行
+            loadFn: {
+                "one": function () {
+                    console.log(" reach one");
+                    //                $("#one").height(2000);
+                },
+                "two": function () {
+                    console.log(" reach two");
+                    //                $("#four").height(2000);
+                },
+                "three": function () {
+                    console.log(" reach three");
+                },
+                "four": function () {
+                    console.log(" reach four");
+                },
+                "five": function () {
+                    console.log(" reach five");
+                }
+            }
+
+        });
+    }
+
+</script>
+
+</html>
